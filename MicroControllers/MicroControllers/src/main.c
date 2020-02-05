@@ -28,13 +28,33 @@
 /*
  * Support and FAQ: visit <a href="https://www.microchip.com/support/">Microchip Support</a>
  */
+#include <util/delay.h>
+#include <avr/io.h>
 #include <asf.h>
+
+void wait(int ms)
+{
+
+	for (int i = 0; i < ms; i++) {
+
+		_delay_ms(1);
+	}
+}
 
 int main (void)
 {
+
 	/* Insert system clock initialization code here (sysclk_init()). */
 
-	board_init();
+	DDRD = 0xff;
+
+	while (1) {
+
+		PORTD = 0x80;
+		wait(500);
+		PORTD = 0x40;
+		wait(500);
+	}
 
 	/* Insert application code here, after the board has been initialized. */
 }

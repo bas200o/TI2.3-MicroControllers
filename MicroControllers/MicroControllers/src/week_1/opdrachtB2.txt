@@ -1,0 +1,7 @@
+
+/*
+ * opdrachtB2.txt
+ *
+ * Created: 5-2-2020 13:33:37
+ *  Author: wessel
+ */ 
