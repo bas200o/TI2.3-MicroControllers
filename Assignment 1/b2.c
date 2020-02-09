@@ -1,14 +1,13 @@
-/*
- * b3.c
- *
- * Created: 29-1-2020 15:16:04
- *  Author: baswi
- */ 
-
 #include <avr/io.h>
 #include <util/delay.h>
 
-int b3() {
+void wait() {
+	for (int i = 0; i < 500; i++){
+		_delay_ms(1);
+	}
+}
+
+void main() {
 	DDRA = 0b11111111;     // set direction to be output
 	DDRB = 0xFF;     // set direction to be output
 	DDRC = 0xFF;     // set direction to be output
@@ -21,14 +20,10 @@ int b3() {
 	char counter;
 	
 	while (1) {
-		if (PORTC == 0b10000000)
-		{
-			PORTD = 0b00000001;
-		}
-		else
-		{
-			PORTD = 0b00000000;
-		}
+		PORTD = 0b01000000;
+		wait();
+		PORTD = 0b00100000;
+		wait();
 		
 	}
 }
