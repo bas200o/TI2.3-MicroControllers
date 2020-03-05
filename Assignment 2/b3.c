@@ -52,8 +52,8 @@ void display(int digit)
 
 int main( void )
 {
-	DDRB = 0b11111111;
-	DDRC = 0x00;
+	DDRB = 0b11111111;					// PORTD all output 
+	DDRC = 0b11111100;
 	
 	int ah = 0;
 	while (1)
@@ -62,20 +62,19 @@ int main( void )
 		if (PINC & 0x01)
 		{
 			ah++;
-			display(ah);
 		}
 		
-		if (PINC & 0x02)
+		if (PINA & 0x02)
 		{
 			ah++;
-			display(ah);
 		}		
 		
-		if (PINC & 0x03)
+		if (PINA & 0x03)
 		{
 			ah = 0;
-			display(ah);
 		}
+		
+		display(ah);
 		wait(10);
 	}
 
