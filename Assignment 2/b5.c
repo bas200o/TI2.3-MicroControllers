@@ -76,7 +76,7 @@ void display(int digit)
 	
 }
 
-
+// work in progress
 int main( void )
 {
 	DDRB = 0b11111111;
