@@ -12,28 +12,8 @@ void wait(int time) {
 	}
 }
 
-void main()
+void setCharliePlexingLed(int led)
 {
-	DDRD = 0b11111111;
-	DDRC = 0b11111110;
-	char led = 0;
-	bool forward = false;
-	bool allLedsOn = false;
-	
-	while (1)
-	{
-		if (led == 0 || led == 7){
-			forward = !forward;
-		}
-		
-		if (forward)
-		{
-			led++;
-		}else{
-			led--;
-		}
-		
-		
 		if (led == 0)
 		{
 			DDRA = 0x00;
@@ -68,8 +48,33 @@ void main()
 			DDRA = 0b00000101;
 			PORTA = 0b00000001;
 		}	
+}
+
+
+void main()
+{
+	DDRD = 0b11111111;
+	DDRC = 0b11111110;
+	char led = 0;
+	bool forward = false;
+	bool noDelay = false;
+	
+	while (1)
+	{
+		if (led == 0 || led == 7){
+			forward = !forward;
+		}
 		
-		if (!allLedsOn)
+		if (forward)
+		{
+			led++;
+		}else{
+			led--;
+		}
+		
+		setCharliePlexingLed(led);
+		
+		if (!noDelay) // if disabled all leds will apear to be on
 		{
 			wait(500);
 		}
